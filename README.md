@@ -65,7 +65,7 @@ Application health can be checked at endpoint /actuator/health
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [Spring Boot](https://spring.io/projects/spring-boot) - The web framework used
 * [Actuator](https://spring.io/guides/gs/actuator-service/) - It adds several production grade services to application
-* [Actuator](https://micrometer.io/) - Provides a simple facade over the instrumentation clients
+* [Micrometer](https://micrometer.io/) - Provides a simple facade over the instrumentation clients
 * [Lombok](https://projectlombok.org/) - Avoid this verbosity so common in Java code
 * [Apache Commons BeanUtils](http://commons.apache.org/beanutils/) - Provides an easy-to-use but flexible wrapper around reflection and introspection
 * [Docker](https://www.docker.com/) -  Tool designed to make it easier to create, deploy, and run applications by using containers
