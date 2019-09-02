@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Duration;
 import java.util.List;
 
 @Configuration
@@ -14,6 +15,9 @@ public class RestTemplateConfiguration {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        builder.setConnectTimeout(Duration.ofSeconds(30));
+        builder.setReadTimeout(Duration.ofSeconds(30));
+
         RestTemplate restTemplate = builder.build();
 
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
