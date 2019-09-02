@@ -59,6 +59,11 @@ All metrics are exposed in endpoint /actuator/metrics
 
 Application health can be checked at endpoint /actuator/health
 
+## Checking the results
+```
+curl --location --request GET "localhost:8080/all?term=Eminem"
+```
+
 ## Built With
 
 * [OpenJDK](https://openjdk.java.net) - Free and open-source implementation of the Java Platform
