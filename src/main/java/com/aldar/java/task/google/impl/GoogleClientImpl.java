@@ -43,7 +43,7 @@ public class GoogleClientImpl implements GoogleClient {
             log.debug("Http Status: {} Body: {}", e.getStatusCode(), e.getResponseBodyAsString());
             return completedFuture(BooksResponse.emptyResponse());
         } catch (Exception e) {
-            log.error("An error was occurred on get Books from Google Books", e);
+            log.error("An error was occurred on get Books from Google Books: {}", e.getMessage());
             return completedFuture(BooksResponse.emptyResponse());
         }
     }

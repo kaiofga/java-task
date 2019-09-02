@@ -43,7 +43,7 @@ public class ITunesClientImpl implements ITunesClient {
             log.debug("Http Status: {} Body: {}", e.getStatusCode(), e.getResponseBodyAsString());
             return completedFuture(ITunesResponse.emptyResponse());
         } catch (Exception e) {
-            log.error("An error was occurred on get Albums from ITunes", e);
+            log.error("An error was occurred on get Albums from ITunes: {}", e.getMessage());
             return completedFuture(ITunesResponse.emptyResponse());
         }
     }
