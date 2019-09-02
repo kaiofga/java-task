@@ -2,10 +2,14 @@ package com.aldar.java.task.itunes.impl;
 
 import com.aldar.java.task.itunes.ITunesClient;
 import com.aldar.java.task.itunes.ITunesParameters;
-import com.aldar.java.task.itunes.ITunesResponse;
+import com.aldar.java.task.itunes.model.ITunesResponse;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -14,6 +18,7 @@ import java.util.concurrent.CompletableFuture;
 import static java.util.concurrent.CompletableFuture.completedFuture;
 import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class ITunesClientImpl implements ITunesClient {
@@ -30,7 +35,16 @@ public class ITunesClientImpl implements ITunesClient {
                 .queryParam("entity", ITunesParameters.getEntity())
                 .queryParam("limit", ITunesParameters.getLimit())
                 .build().toUri();
-
-        return completedFuture(restTemplate.getForEntity(iTunesURI, ITunesResponse.class).getBody());
+        try {
+            ResponseEntity<ITunesResponse> response = restTemplate.getForEntity(iTunesURI, ITunesResponse.class);
+            return completedFuture(response.getBody());
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            log.error("An http error was occurred on get Albums from ITunes");
+            log.debug("Http Status: {} Body: {}", e.getStatusCode(), e.getResponseBodyAsString());
+            return completedFuture(ITunesResponse.emptyResponse());
+        } catch (Exception e) {
+            log.error("An error was occurred on get Albums from ITunes", e);
+            return completedFuture(ITunesResponse.emptyResponse());
+        }
     }
 }

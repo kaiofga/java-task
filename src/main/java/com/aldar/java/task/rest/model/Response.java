@@ -1,7 +1,7 @@
 package com.aldar.java.task.rest.model;
 
 import com.aldar.java.task.google.model.Item;
-import com.aldar.java.task.itunes.Result;
+import com.aldar.java.task.itunes.model.Result;
 import lombok.Data;
 
 import java.util.List;
@@ -20,7 +20,6 @@ public class Response {
 
         response.albums = resultAlbums.stream()
                 .map(Album::builder)
-                .filter(Objects::nonNull)
                 .sorted(comparing(Album::getCollectionName))
                 .collect(toList());
 
@@ -28,7 +27,6 @@ public class Response {
                 .map(Item::getVolumeInfo)
                 .filter(Objects::nonNull)
                 .map(Book::builder)
-                .filter(Objects::nonNull)
                 .sorted(comparing(Book::getTitle))
                 .collect(toList());
 

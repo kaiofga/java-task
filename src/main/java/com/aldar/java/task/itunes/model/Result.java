@@ -1,4 +1,4 @@
-package com.aldar.java.task.itunes;
+package com.aldar.java.task.itunes.model;
 
 import lombok.Data;
 

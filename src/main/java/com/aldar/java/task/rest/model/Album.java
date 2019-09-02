@@ -1,6 +1,6 @@
 package com.aldar.java.task.rest.model;
 
-import com.aldar.java.task.itunes.Result;
+import com.aldar.java.task.itunes.model.Result;
 import lombok.Data;
 import lombok.SneakyThrows;
 import org.apache.commons.beanutils.BeanUtils;

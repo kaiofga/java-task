@@ -1,13 +1,13 @@
 package com.aldar.java.task.service.impl;
 
 import com.aldar.java.task.google.GoogleClient;
+import com.aldar.java.task.google.model.BooksResponse;
 import com.aldar.java.task.itunes.ITunesClient;
+import com.aldar.java.task.itunes.model.ITunesResponse;
 import com.aldar.java.task.service.SearchService;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.aldar.java.task.DataBuilder.booksResponseData;
-import static com.aldar.java.task.DataBuilder.iTunesResponseData;
 import static java.util.concurrent.CompletableFuture.completedFuture;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -30,8 +30,8 @@ public class SearchServiceImplTest {
 
     @Test
     public void shouldSearchItems() {
-        when(iTunesClientMock.search(any())).thenReturn(completedFuture(iTunesResponseData()));
-        when(googleClientMock.getBooks(any())).thenReturn(completedFuture(booksResponseData()));
+        when(iTunesClientMock.search(any())).thenReturn(completedFuture(ITunesResponse.emptyResponse()));
+        when(googleClientMock.getBooks(any())).thenReturn(completedFuture(BooksResponse.emptyResponse()));
 
         this.searchService.searchItems("Elvis Presley");
     }

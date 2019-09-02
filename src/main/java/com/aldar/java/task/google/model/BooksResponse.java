@@ -4,8 +4,17 @@ import lombok.Data;
 
 import java.util.List;
 
+import static java.util.Collections.emptyList;
+
 @Data
 public class BooksResponse {
-    public Integer totalItems;
-    public List<Item> items;
+    private Integer totalItems;
+    private List<Item> items;
+
+    public static BooksResponse emptyResponse() {
+        BooksResponse booksResponse = new BooksResponse();
+        booksResponse.totalItems = 0;
+        booksResponse.items = emptyList();
+        return booksResponse;
+    }
 }
