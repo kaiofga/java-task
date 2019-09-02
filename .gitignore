@@ -1,9 +1,5 @@
 target/
 !**/src/main/**
 !**/src/test/**
-
-### STS ###
-### IntelliJ IDEA ###
 .idea
-### NetBeans ###
-### VS Code ###
+*.iml
